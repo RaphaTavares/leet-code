@@ -1,20 +1,19 @@
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
 
-        int[] resposta = new int[2];
+        var map = new Dictionary<int, int>();
 
-     for(int i = 0; i < nums.Length - 1; i++)
-     {
-        for(int j = i+1; j < nums.Length; j++){
-            if(nums[i] + nums[j] == target){
-            resposta[0] = i;
-            resposta[1] = j;
-
+        for(int i = 0; i < nums.Length; i++)
+        {
+            var complement = target - nums[i];
+            
+            if(map.ContainsKey(complement))
+                return new int[]{i, map[complement]};
+            
+            map[nums[i]] = i;
         }
-        }
-     }
     
-    return resposta;
+        return null;
     
     }
 }
