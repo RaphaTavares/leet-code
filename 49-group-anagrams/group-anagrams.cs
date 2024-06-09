@@ -3,17 +3,20 @@ public class Solution {
         
         var anagramGroups = new Dictionary<string, List<string>>();
 
-        var usedIndexes = new List<int>();
-
-        for(var i = 0; i < strs.Length; i++)
+        foreach(var str in strs)
         {
-            var orderedStr = new string(strs[i].OrderBy(x => x).ToArray());
+            int[] charCount = new int[26];
+            foreach(var c in str){
+                charCount[c - 'a']++;
+            }
 
-            if(!anagramGroups.ContainsKey(orderedStr))
-                anagramGroups.Add(orderedStr, new List<string>(){strs[i]});
+            var key = string.Join("#", charCount);
+
+            if(!anagramGroups.ContainsKey(key))
+                anagramGroups.Add(key, new List<string>(){str});
 
             else
-                anagramGroups[orderedStr].Add(strs[i]);
+                anagramGroups[key].Add(str);
         }
 
         return anagramGroups.Values.ToList<IList<string>>();
