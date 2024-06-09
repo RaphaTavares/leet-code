@@ -19,26 +19,3 @@ public class Solution {
         return anagramGroups.Values.ToList<IList<string>>();
     }
 }
-
-public static class ExtensionMethods {
-        public static bool IsAnagram(this string firstString, string secondString)
-{
-    if(firstString.Length != secondString.Length)
-        return false;
-
-    int[] charCount = new int[26];
-
-    for(var i = 0; i < firstString.Length; i++){
-        charCount[firstString[i] - 'a']++;
-        charCount[secondString[i] - 'a']--;
-    }
-
-    for(var i = 0; i < charCount.Length; i++)
-    {
-        if(charCount[i] != 0)
-            return false;
-    }
-
-    return true;
-}
-}
