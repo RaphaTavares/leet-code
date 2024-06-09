@@ -4,28 +4,16 @@ public class Solution {
         if(s.Length != t.Length)
             return false;
 
-        var countS = new Dictionary<char, int>();
-        var countT = new Dictionary<char, int>();
+        int[] charCount = new int[26];
 
         for(var i = 0; i < s.Length; i++)
         {
-            if(countS.ContainsKey(s[i])){
-                countS[s[i]] += 1;
-            }
-            else{
-                countS[s[i]] = 1;
-            }
-
-            if(countT.ContainsKey(t[i])){
-                countT[t[i]] += 1;
-            }
-            else{
-                countT[t[i]] = 1;
-            }
+            charCount[s[i] - 'a']++;
+            charCount[t[i] - 'a']--;
         }
         
-        foreach(var key in countS.Keys){
-            if(!countT.ContainsKey(key) || countT[key] != countS[key])
+        for(int i = 0; i < charCount.Length; i++){
+            if(charCount[i] != 0)
                 return false;
         }
         
