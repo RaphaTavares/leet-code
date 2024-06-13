@@ -10,17 +10,13 @@ public class Solution {
                 continue;
             }
 
-            var row = new List<int>();
+            var row = new List<int>(new int[i + 1]);
 
-            for(int j = 0; j <= i; j++)
+            row[0] = row[i] = 1;
+
+            for(int j = 1; j < i; j++)
             {
-                if(j == 0 || j == i)
-                {
-                    row.Add(1);
-                    continue;
-                }
-
-                row.Add(pascaltriangle[i-1][j] + pascaltriangle[i-1][j-1]);
+                row[j] = (pascaltriangle[i-1][j -1] + pascaltriangle[i-1][j]);
             }
 
             pascaltriangle.Add(row);
