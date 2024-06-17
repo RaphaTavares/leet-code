@@ -1,14 +1,16 @@
 public class Solution {
     public void MoveZeroes(int[] nums) {
-        
-        for(int j = 0; j < nums.Length - 1; j++){
-            for(int i = nums.Length - 1; i >= 0; i--){
-                if(nums[i] == 0 && i < nums.Length - 1){
-                    var temp = nums[i + 1];
-                    nums[i + 1] = 0;
-                    nums[i] = temp;
+        int lastNonZeroFoundAt = 0;
+
+        for(int current = 0; current < nums.Length; current++){
+            if(nums[current] != 0){
+                nums[lastNonZeroFoundAt] = nums[current];
+                lastNonZeroFoundAt++;
             }
         }
+
+        for(int i = lastNonZeroFoundAt; i < nums.Length; i++){
+            nums[i] = 0;
         }
         
     }
