@@ -3,21 +3,15 @@ func maxVowels(s string, k int) int {
     currentVowels := 0
 
     for i := 0; i < k; i++{
-        if isVowel(s[i]){
-            currentVowels++
-        }
+        currentVowels += isVowel(s[i]) 
     }
 
     maxVowels = currentVowels
 
     for j := k; j < len(s); j++{
-        if isVowel(s[j]){
-            currentVowels++
-        }
 
-        if isVowel(s[j-k]){
-            currentVowels--
-        }
+        currentVowels += isVowel(s[j])
+        currentVowels -= isVowel(s[j-k])
 
         if currentVowels > maxVowels{
             maxVowels = currentVowels
@@ -27,6 +21,11 @@ func maxVowels(s string, k int) int {
     return maxVowels
 }
 
-func isVowel(c byte) bool {
-    return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+func isVowel(c byte) int {
+    switch c {
+	case 97, 101, 105, 111, 117:
+		return 1
+	default:
+		return 0
+	}
 }
