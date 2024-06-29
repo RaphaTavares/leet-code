@@ -1,21 +1,23 @@
+import "container/list"
+
 type RecentCounter struct {
-    CountsTime []int
+    times *list.List
 }
 
 
 func Constructor() RecentCounter {
-    return RecentCounter{CountsTime: []int{}}
+    return RecentCounter{times: list.New()}
 }
 
 
 func (this *RecentCounter) Ping(t int) int {
-    this.CountsTime = append(this.CountsTime, t)
+    this.times.PushBack(t)
 
-    for len(this.CountsTime) > 0 && this.CountsTime[0] < t-3000{
-        this.CountsTime = this.CountsTime[1:]
+    for this.times.Len() > 0 && this.times.Front().Value.(int) < t-3000{
+        this.times.Remove(this.times.Front())
     }
 
-    return len(this.CountsTime)
+    return this.times.Len()
 }
 
 
