@@ -4,22 +4,18 @@ type RecentCounter struct {
 
 
 func Constructor() RecentCounter {
-    return RecentCounter{}
+    return RecentCounter{CountsTime: []int{}}
 }
 
 
 func (this *RecentCounter) Ping(t int) int {
     this.CountsTime = append(this.CountsTime, t)
 
-    result := 0
-
-    for i := 0; i < len(this.CountsTime); i++ {
-        if this.CountsTime[i] >= t - 3000 && this.CountsTime[i] <= t {
-            result++
-        }
+    for len(this.CountsTime) > 0 && this.CountsTime[0] < t-3000{
+        this.CountsTime = this.CountsTime[1:]
     }
 
-    return result
+    return len(this.CountsTime)
 }
 
 
