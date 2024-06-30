@@ -10,11 +10,11 @@ func asteroidCollision(asteroids []int) []int {
 
         for len(remainingAsteroids) > 0 && remainingAsteroids[len(remainingAsteroids)-1] > 0 && asteroid < 0 {
 
-            top := float64(remainingAsteroids[len(remainingAsteroids)-1])
+            top := remainingAsteroids[len(remainingAsteroids)-1]
 
-            if math.Abs(float64(asteroid)) > top {
+            if math.Abs(float64(asteroid)) > float64(top) {
                 remainingAsteroids = remainingAsteroids[:len(remainingAsteroids)-1]    
-            } else if math.Abs(float64(asteroid)) == top {
+            } else if math.Abs(float64(asteroid)) == float64(top) {
                 exploded = true
                 remainingAsteroids = remainingAsteroids[:len(remainingAsteroids)-1]
                 break
