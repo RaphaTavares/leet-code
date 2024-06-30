@@ -1,60 +1,34 @@
 
 import (
-	"fmt"
 	"math"
 )
 
 func asteroidCollision(asteroids []int) []int {
     var remainingAsteroids []int
+    for _, asteroid := range asteroids {
+        exploded := false
 
-    remainingAsteroids = append(remainingAsteroids, asteroids[0])
+        for len(remainingAsteroids) > 0 && remainingAsteroids[len(remainingAsteroids)-1] > 0 && asteroid < 0 {
 
-    for i:= 1; i < len(asteroids); i++ {
-        if len(remainingAsteroids) == 0{
-            remainingAsteroids = append(remainingAsteroids, asteroids[i])
-            continue
-        }
+            top := float64(remainingAsteroids[len(remainingAsteroids)-1])
 
-        if asteroids[i] > 0 {
-                remainingAsteroids = append(remainingAsteroids, asteroids[i])
-            } else if asteroids[i] < 0 {
-            if goesLeft(remainingAsteroids[len(remainingAsteroids)-1]) {
-                remainingAsteroids = append(remainingAsteroids, asteroids[i])
+            if math.Abs(float64(asteroid)) > top {
+                remainingAsteroids = remainingAsteroids[:len(remainingAsteroids)-1]    
+            } else if math.Abs(float64(asteroid)) == top {
+                exploded = true
+                remainingAsteroids = remainingAsteroids[:len(remainingAsteroids)-1]
+                break
             } else {
-
-            
-
-            count := len(remainingAsteroids)
-            asteroidExploded := false
-
-            for count > 0 && !goesLeft(remainingAsteroids[len(remainingAsteroids)-1]){
-
-                fmt.Printf("porra aqui: %d", remainingAsteroids[len(remainingAsteroids)-1])
-                if int(math.Abs(float64(asteroids[i]))) > remainingAsteroids[count-1] {
-                            fmt.Println("ola")
-                    remainingAsteroids = remainingAsteroids[:count-1]
-                } else if int(math.Abs(float64(asteroids[i]))) == remainingAsteroids[count-1] {
-                            fmt.Println("oi")
-                    remainingAsteroids = remainingAsteroids[:count-1]
-                    asteroidExploded = true
-                    break
-                } else if int(math.Abs(float64(asteroids[i]))) < remainingAsteroids[count-1] {
-                            fmt.Println("eai")
-                    asteroidExploded = true
-                    break
-                }   
-                count--
-            }
-            if !asteroidExploded {
-                remainingAsteroids = append(remainingAsteroids, asteroids[i])
-            }
+                exploded = true
+                break
             }
         }
+
+        if !exploded {
+            remainingAsteroids = append(remainingAsteroids, asteroid)
+        } 
     }
 
     return remainingAsteroids
 }
 
-func goesLeft(asteroid int) bool {
-    return asteroid < 0
-}
