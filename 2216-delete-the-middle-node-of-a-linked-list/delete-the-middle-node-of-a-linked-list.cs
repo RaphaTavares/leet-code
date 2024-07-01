@@ -12,22 +12,36 @@
 public class Solution {
     public ListNode DeleteMiddle(ListNode head) {
         
-        if(head.next == null)
+        var size = GetSize(head);
+
+        if(size == 1)
             return null;
 
-        ListNode fast = head;
-        ListNode slow = head;
-        ListNode prev = null;
+        var count = 0;
 
-        while(fast != null && fast.next != null){
-            fast = fast.next.next;
-            prev = slow;
-            slow = slow.next;
+        ListNode current = head;
+        ListNode previous = null;
+        
+        while(count != size / 2){
+            previous = current;
+            current = current.next;
+            count++;
         }
 
-        if(prev != null)
-            prev.next = slow.next;
+        previous.next = current.next;
 
         return head;
+    }
+
+    public int GetSize(ListNode head){
+        var count = 1;
+        ListNode current = head;
+
+        while(current.next != null){
+            current = current.next;
+            count++;
+        }
+
+        return count;
     }
 }
