@@ -3,8 +3,7 @@ func canPlaceFlowers(flowerbed []int, n int) bool {
     length := len(flowerbed)
     for i := 0; i < length; i++ {
 
-        fmt.Printf("i: %d", i)
-        
+
         if flowerbed[i] == 0 {
             prevEmpty := (i == 0) || (flowerbed[i-1] == 0)
             nextEmpty := (i == length-1) || (flowerbed[i+1] == 0)
