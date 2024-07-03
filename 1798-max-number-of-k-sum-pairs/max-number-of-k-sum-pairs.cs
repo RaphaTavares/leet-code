@@ -3,23 +3,20 @@ public class Solution {
         var hashmap = new Dictionary<int, int>();
         var maxOperations = 0;
 
-        for(int i = 0; i < nums.Length; i++){
-            var complement = k - nums[i];
+        foreach(var num in nums){
+            var complement = k - num;
 
-            if(hashmap.ContainsKey(complement)){
-                if(hashmap[complement] > 0){
+            if(hashmap.TryGetValue(complement, out var count) && count > 0){
                 hashmap[complement]--;
                 maxOperations++;
                 continue;
-                }
+            } 
+
+            if(!hashmap.ContainsKey(num)){
+            hashmap[num] = 0;
             }
 
-            if(hashmap.ContainsKey(nums[i])){
-                hashmap[nums[i]]++;
-                continue;
-            }
-
-            hashmap[nums[i]] = 1;
+            hashmap[num]++;
         }
 
         return maxOperations;
