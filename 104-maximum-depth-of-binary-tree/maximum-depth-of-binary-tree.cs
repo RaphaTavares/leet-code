@@ -18,24 +18,4 @@ public class Solution {
 
         return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
     }
-
-    public int RecursiveIteration(TreeNode node){
-        var height = 1;
-        var leftHeight = 0;
-        var rightHeight = 0;
-
-        if(node.left != null){
-            leftHeight += RecursiveIteration(node.left);
-        }
-        if(node.right != null){
-            rightHeight += RecursiveIteration(node.right);
-        }
-
-        if(leftHeight > rightHeight)
-            height += leftHeight;
-        else
-            height += rightHeight;
-        
-        return height;
-    }
 }
