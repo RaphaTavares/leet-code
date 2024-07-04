@@ -15,8 +15,8 @@ public class Solution {
     public int MaxDepth(TreeNode root) {
         if(root == null)
             return 0;
-            
-        return RecursiveIteration(root);
+
+        return 1 + Math.Max(MaxDepth(root.left), MaxDepth(root.right));
     }
 
     public int RecursiveIteration(TreeNode node){
