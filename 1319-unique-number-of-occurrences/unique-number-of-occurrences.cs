@@ -13,14 +13,9 @@ public class Solution {
         var set = new HashSet<int>();
 
         foreach(var item in map){
-            var setSize = set.Count();
-
             set.Add(item.Value);
-
-            if(setSize == set.Count())
-                return false;
         }
 
-        return true;
+        return map.Count() == set.Count();
     }
 }
