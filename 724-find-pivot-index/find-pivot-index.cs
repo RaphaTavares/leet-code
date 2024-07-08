@@ -8,7 +8,6 @@ public class Solution {
 
         }
         
-        Console.WriteLine($"sum: {sum}");
 
         for(int i = 0; i < nums.Count(); i++){
             if(sum - nums[i] - leftSum == leftSum)
