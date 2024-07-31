@@ -18,9 +18,6 @@ public class Solution {
 
         GetLeafValueSequence(root1, list1);
         GetLeafValueSequence(root2, list2);
-        
-        Console.WriteLine("list1: " + String.Join(", ", list1));
-        Console.WriteLine("list2: " + String.Join(", ", list2));
 
         return list1.SequenceEqual(list2);
     }
@@ -31,14 +28,10 @@ public class Solution {
         var rightExists = root.right != null;
 
         if(leftExists) {
-            Console.WriteLine("nó: " + root?.val);
-            Console.WriteLine("indo para a esquerda");
             GetLeafValueSequence(root.left, leafValueSequence);
         }
         if(rightExists)
         {
-            Console.WriteLine("nó: " + root?.val);
-            Console.WriteLine("indo para a direita");
             GetLeafValueSequence(root.right, leafValueSequence);
         }
         if(!leftExists && !rightExists)
