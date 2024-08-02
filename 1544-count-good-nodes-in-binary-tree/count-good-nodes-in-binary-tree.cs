@@ -24,7 +24,6 @@ public class Solution {
         int count = 0;
         
         if(root.val >= maxSoFar){
-            Console.WriteLine($"nó " + root.val + "\nmaxSoFar: "+ maxSoFar);
             count = 1;
         }
 
