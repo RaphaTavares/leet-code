@@ -13,18 +13,16 @@ public class Solution : GuessGame {
     }
 
     public int Verify(int start, int end){
-        if(start > end) return -1;
-        
-        int median = start + (end - start) / 2;
+        if (start > end) return -1; // This should not really happen in this context but is a safe guard
+
+        int median = start + (end - start) / 2; // Prevents overflow
         int isCorrect = guess(median);
 
         if(isCorrect == 0)
-            return median;
-        
+            return median; // Correct number found
         else if(isCorrect == -1)
-            return Verify(start, median - 1);
-        
+            return Verify(start, median - 1); // Guess is too high, adjust end
         else
-            return Verify(median + 1, end);
+            return Verify(median + 1, end); // Guess is too low, adjust start
     }
 }
