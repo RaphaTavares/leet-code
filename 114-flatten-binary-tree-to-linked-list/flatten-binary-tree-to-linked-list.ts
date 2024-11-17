@@ -24,7 +24,6 @@ function flatten(root: TreeNode | null): void {
         traverse(node.right);
         traverse(node.left);
 
-    console.log(`I'm in the: ${node.val}`)
         node.right = prev;
         node.left = null;
         prev = node;
