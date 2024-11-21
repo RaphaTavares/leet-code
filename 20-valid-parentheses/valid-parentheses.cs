@@ -10,21 +10,15 @@ public class Solution {
         };
 
         foreach(char ch in s){
-            if(IsOpening(ch))
-                stack.Push(ch);
-            
-            else if(mapping.ContainsKey(ch)){
-                if(stack.Count == 0)
-                    return false;
-                    
-                var topOfStack = stack.Pop();
-
-                if(topOfStack != mapping[ch])
+            if(mapping.TryGetValue(ch, out char expected)){
+                if(stack.Count == 0 || stack.Pop() != expected)
                     return false;
             }
+            else
+                stack.Push(ch);
         }
 
-        return stack.Count() == 0 ? true : false;
+        return stack.Count() == 0;
 
     }
 
