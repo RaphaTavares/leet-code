@@ -3,17 +3,13 @@ public class Solution {
 
         var start = 0;
         var mid = n;
-        List<int> result = new();
+        int[] result = new int[n*2];
 
-        while(start < n)
-        {
-            result.Add(nums[start]);
-            result.Add(nums[mid]);
-
-            start++;
-            mid++;
+        for(int i = 0; i < n*2; i+=2){
+            result[i] = nums[start++];
+            result[i+1] = nums[mid++];
         }
 
-        return result.ToArray();
+        return result;
     }
 }
