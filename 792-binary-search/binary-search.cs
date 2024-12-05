@@ -5,7 +5,6 @@ public class Solution {
 
         while(start <= end){
             var mid = (end + start) / 2;
-            Console.WriteLine("Mid:" + mid);
             if(nums[mid] > target)
                 end = mid -1;
             else if(nums[mid] < target)
